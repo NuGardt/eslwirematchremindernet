@@ -1,0 +1,69 @@
+NuGardt ESL Wire Plugin Match Reminder v1.0.0.0
+-----------------------------------------------
+Author: Kevin 'OomJan' Gardthausen
+Last Update: 22.01.2012
+
+The match reminder is a plugin for ESL Wire (http://www.esl.eu/wire).
+
+This plugin lets your manage reminders for your upcoming matches. Never forget a match while you are actually sitting at your PC and forgetting the time while watching streams for instance.
+
+Notifications can be shown in game (through ESL Wire when supported), via a balloon popup on the taskbar and voice announcement (Text-To-Speech).
+
+Set multiple notification before a match start, set different options for each notification.
+
+Want more stuff in this plugin? Message me with your suggestions or do it your self. This plugin is open source. Written in Visual Basic.net. Source codes available on code.google.com/TBD (GNU GPL v2 License).
+
+
+Format place holders
+--------------------
+$gameid$
+The ESL game identifier
+Example: "687" (for StarCraft II)
+
+$gametitle$
+The title of the game
+Example: "StarCraft II"
+
+$id$
+The ESL match identifier
+
+$leaguecountry$
+The country region of the match
+Example: "eu" (for Europe), "de" (For Germany)
+
+$leagueid$
+The ESL league identifier
+
+$leaguename$
+The name of the league
+Example: "StarCraft II 1on1 Amateur Series"
+
+$mode$
+The play mode
+Example: "player"
+
+$name$
+The name of the match
+Example: "vs. OomJan"
+
+$time$
+The time when the match starts
+
+$uri$
+The link to the match
+Example: "http://www.esl.eu"
+
+$timeremaining$
+The time remaining till the match starts
+Example: "1 day 14 hours 37 minutes 2 seconds"
+
+
+Support
+-------
+E-mail: kevin@nugardt.com
+
+
+License
+-------
+GNU GPL v2
+Please see LICENSE.txt for details.
