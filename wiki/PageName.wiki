@@ -16,46 +16,46 @@ Want more stuff in this plugin? Message me with your suggestions or do it your s
 
 Format place holders
 --------------------
-$gameid$
-The ESL game identifier
-Example: "687" (for StarCraft II)
+ * $gameid$
+ * The ESL game identifier
+ * Example: "687" (for StarCraft II)
 
-$gametitle$
-The title of the game
-Example: "StarCraft II"
+ * $gametitle$
+ * The title of the game
+ * Example: "StarCraft II"
 
-$id$
-The ESL match identifier
+ * $id$
+ * The ESL match identifier
 
-$leaguecountry$
-The country region of the match
-Example: "eu" (for Europe), "de" (For Germany)
+ * $leaguecountry$
+ * The country region of the match
+ * Example: "eu" (for Europe), "de" (For Germany)
 
-$leagueid$
-The ESL league identifier
+ * $leagueid$
+ * The ESL league identifier
 
-$leaguename$
-The name of the league
-Example: "StarCraft II 1on1 Amateur Series"
+ * $leaguename$
+ * The name of the league
+ * Example: "StarCraft II 1on1 Amateur Series"
 
-$mode$
-The play mode
-Example: "player"
+ * $mode$
+ * The play mode
+ * Example: "player"
 
-$name$
-The name of the match
-Example: "vs. OomJan"
+ * $name$
+ * The name of the match
+ * Example: "vs. OomJan"
 
-$time$
-The time when the match starts
+ * $time$
+ * The time when the match starts
 
-$uri$
-The link to the match
-Example: "http://www.esl.eu"
+ * $uri$
+ * The link to the match
+ * Example: "http://www.esl.eu"
 
-$timeremaining$
-The time remaining till the match starts
-Example: "1 day 14 hours 37 minutes 2 seconds"
+ * $timeremaining$
+ * The time remaining till the match starts
+ * Example: "1 day 14 hours 37 minutes 2 seconds"
 
 
 Support
