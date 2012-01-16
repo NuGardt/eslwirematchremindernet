@@ -252,11 +252,8 @@ Namespace ESLWirePlugIn.MatchReminder
 
         Message = Reminder.Message.Replace("$timetomatch$", FormatTimeSpan(Reminder.Match.Time - JustNow))
 
-        If Me.Settings.EnableInGameNotification AndAlso Reminder.ShowInGame Then Call Me.GI.showInGameNotification(Message, DefaultTrayText, Reminder.NotificationDurationInSeconds)
-        If Me.Settings.EnableBalloonNotification AndAlso Reminder.ShowBalloon Then
-          Me.TrayNotification.BalloonTipText = Message
-          Call Me.TrayNotification.ShowBalloonTip(10000)
-        End If
+        If Me.Settings.EnableInGameNotification AndAlso Reminder.ShowInGame Then Call Me.GI.showInGameNotification(Message, DefaultTrayText, Reminder.NotificationDurationInSeconds * 1000)
+        If Me.Settings.EnableBalloonNotification AndAlso Reminder.ShowBalloon Then Call Me.TrayNotification.ShowBalloonTip(Reminder.NotificationDurationInSeconds * 1000, Me.TrayNotification.BalloonTipTitle, Message, ToolTipIcon.Info)
         If Me.Settings.EnableVoiceAnnouncement AndAlso Reminder.VoiceAnnounce AndAlso (Me.Speech.State = SynthesizerState.Ready) Then Call Me.Speech.SpeakAsync(FormatForVoice(Message))
       End If
     End Sub
