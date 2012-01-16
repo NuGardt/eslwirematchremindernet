@@ -19,17 +19,23 @@
 '
 
 Namespace ESLWirePlugIn.MatchReminder
-  Public Interface IDisposable
-    Inherits System.IDisposable
+  Public Interface IConfig
+    Property Notifications As List(Of NotificationSetting)
 
-    Event WillDispose(ByVal Sender As Object,
-                      ByVal e As EventArgs)
+    Property EnableNotifications As Boolean
 
-    Event Disposed(ByVal Sender As Object,
-                   ByVal e As EventArgs)
+    Property EnableVoiceAnnouncement As Boolean
 
-    ReadOnly Property IsDisposed() As Boolean
+    Property EnableBalloonNotification As Boolean
 
-    ReadOnly Property IsDisposing() As Boolean
+    Property EnableInGameNotification As Boolean
+
+    Property ShowTrayIcon As Boolean
+
+    Property TtsVolume As Int32
+
+    Property TtsRate As Int32
+
+    Property TtsVoice As String
   End Interface
 End Namespace

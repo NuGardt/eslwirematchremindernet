@@ -1,10 +1,31 @@
-﻿Imports System.Xml.Serialization
+﻿'
+' Copyright (C) 2012 NuGardt Software
+' http://www.nugardt.com
+'
+' This Program is free software; you can redistribute it and/or modify
+' it under the terms of the GNU General Public License as published by
+' the Free Software Foundation; either version 2, or (at your option)
+' any later version.
+'
+' This Program is distributed in the hope that it will be useful,
+' but WITHOUT ANY WARRANTY; without even the implied warranty of
+' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+' GNU General Public License for more details.
+'
+' You should have received a copy of the GNU General Public License
+' along with NuGardt ESL Wire Plugin Match Reminder; see the file COPYING. If not, write to
+' the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
+' http://www.gnu.org/copyleft/gpl.html
+'
+Imports System.Xml.Serialization
 Imports System.IO
 Imports System.Xml
 Imports System.Text
 
 Namespace ESLWirePlugIn.MatchReminder
   Public Class Config
+    Implements IConfig
+
     Private Shared ReadOnly Serializer As New XmlSerializer(GetType(Config))
     Private Shared ReadOnly [NameSpace] As XmlSerializerNamespaces = BuildNamespace()
 
@@ -45,9 +66,9 @@ Namespace ESLWirePlugIn.MatchReminder
       Me.EnableBalloonNotification = True
       Me.EnableInGameNotification = True
       Me.ShowTrayIcon = True
-      Me.TTSVolume = 100
+      Me.TtsVolume = 100
       Me.TtsRate = - 1
-      Me.TTSVoice = ""
+      Me.TtsVoice = ""
     End Sub
 
     Private Shared Function BuildNamespace() As XmlSerializerNamespaces
@@ -75,7 +96,7 @@ Namespace ESLWirePlugIn.MatchReminder
     End Sub
 
     Public Sub Validate()
-      If Me.TtsVolume < 0 OrElse Me.TtsVolume > 100 Then Me.TtsVolume = DefaultTTSVolume
+      If Me.TtsVolume < 0 OrElse Me.TtsVolume > 100 Then Me.TtsVolume = DefaultTtsVolume
       If Me.TtsRate < - 10 OrElse Me.TtsRate > 10 Then Me.TtsRate = DefaultTtsRate
 
       With Me.Notifications.GetEnumerator()
@@ -181,5 +202,90 @@ Namespace ESLWirePlugIn.MatchReminder
 
       Return (Ex Is Nothing)
     End Function
+
+#Region "Properties"
+
+    Private Property iEnableBalloonNotification As Boolean Implements IConfig.EnableBalloonNotification
+      Get
+        Return Me.EnableBalloonNotification
+      End Get
+      Set(Value As Boolean)
+        Me.EnableBalloonNotification = Value
+      End Set
+    End Property
+
+    Private Property iEnableInGameNotification As Boolean Implements IConfig.EnableInGameNotification
+      Get
+        Return Me.EnableInGameNotification
+      End Get
+      Set(Value As Boolean)
+        Me.EnableInGameNotification = Value
+      End Set
+    End Property
+
+    Private Property iEnableNotifications As Boolean Implements IConfig.EnableNotifications
+      Get
+        Return Me.EnableNotifications
+      End Get
+      Set(Value As Boolean)
+        Me.EnableNotifications = Value
+      End Set
+    End Property
+
+    Private Property iEnableVoiceAnnouncement As Boolean Implements IConfig.EnableVoiceAnnouncement
+      Get
+        Return Me.EnableVoiceAnnouncement
+      End Get
+      Set(Value As Boolean)
+        Me.EnableVoiceAnnouncement = Value
+      End Set
+    End Property
+
+    Private Property iNotifications As List(Of NotificationSetting) Implements IConfig.Notifications
+      Get
+        Return Me.Notifications
+      End Get
+      Set(Value As List(Of NotificationSetting))
+        Me.Notifications = Value
+      End Set
+    End Property
+
+    Private Property iShowTrayIcon As Boolean Implements IConfig.ShowTrayIcon
+      Get
+        Return Me.ShowTrayIcon
+      End Get
+      Set(Value As Boolean)
+        Me.ShowTrayIcon = Value
+      End Set
+    End Property
+
+    Private Property iTtsRate As Integer Implements IConfig.TtsRate
+      Get
+        Return Me.TtsRate
+      End Get
+      Set(Value As Integer)
+        Me.TtsRate = Value
+      End Set
+    End Property
+
+    Private Property iTtsVoice As String Implements IConfig.TtsVoice
+      Get
+        Return Me.TtsVoice
+      End Get
+      Set(Value As String)
+        Me.TtsVoice = Value
+      End Set
+    End Property
+
+    Private Property iTtsVolume As Integer Implements IConfig.TtsVolume
+      Get
+        Return Me.TtsVolume
+      End Get
+      Set(Value As Integer)
+        Me.TtsVolume = Value
+      End Set
+    End Property
+
+#End Region
   End Class
 End Namespace

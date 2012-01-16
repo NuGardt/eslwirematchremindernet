@@ -180,13 +180,11 @@ The time when the match starts\par
 \par
 \b $uri$\b0\par
 The link to the match\par
-Example: "{\field{\*\fldinst{HYPERLINK "http://www.esl.eu"}}{\fldrslt{\ul\cf1 http://www.esl.eu}}}\f0\fs18 "\par
+Example: "http://www.esl.eu"\par
 \par
 \b $timeremaining$\b0\par
 The time remaining till the match starts\par
 Example: "1 day 14 hours 37 minutes 2 seconds"\par
-\par
-\par
 \pard\sa200\sl276\slmult1\lang7\f1\fs22\par
 }</value>
   </data>

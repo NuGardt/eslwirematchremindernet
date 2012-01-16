@@ -14,8 +14,8 @@ Set multiple notification before a match start, set different options for each n
 Want more stuff in this plugin? Message me with your suggestions or do it your self. This plugin is open source. Written in Visual Basic.net. Source codes available on code.google.com/TBD (GNU GPL v2 License).
 
 
-Format placeholders
--------------------
+Format place holders
+--------------------
 $gameid$
 The ESL game identifier
 Example: "687" (for StarCraft II)
@@ -58,7 +58,6 @@ The time remaining till the match starts
 Example: "1 day 14 hours 37 minutes 2 seconds"
 
 
-
 Support
 -------
 E-mail: kevin@nugardt.com
@@ -67,4 +66,4 @@ E-mail: kevin@nugardt.com
 License
 -------
 GNU GPL v2
-Please see LICENSE.txt for details.
+Please see COPYING.txt for details.

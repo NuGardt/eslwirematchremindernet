@@ -84,6 +84,7 @@
     <Compile Include="ESLWirePlugIn\MatchReminder\Config.vb" />
     <Compile Include="ESLWirePlugIn\MatchReminder\Disposable.vb" />
     <Compile Include="ESLWirePlugIn\MatchReminder\IDisposable.vb" />
+    <Compile Include="ESLWirePlugIn\MatchReminder\IConfig.vb" />
     <Compile Include="ESLWirePlugIn\MatchReminder\Match.vb" />
     <Compile Include="ESLWirePlugIn\MatchReminder\NotificationSetting.vb" />
     <Compile Include="ESLWirePlugIn\MatchReminder\ReminderItem.vb" />

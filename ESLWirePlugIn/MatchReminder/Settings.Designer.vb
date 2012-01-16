@@ -1,4 +1,24 @@
-﻿Namespace ESLWirePlugIn.MatchReminder
+﻿'
+' Copyright (C) 2012 NuGardt Software
+' http://www.nugardt.com
+'
+' This Program is free software; you can redistribute it and/or modify
+' it under the terms of the GNU General Public License as published by
+' the Free Software Foundation; either version 2, or (at your option)
+' any later version.
+'
+' This Program is distributed in the hope that it will be useful,
+' but WITHOUT ANY WARRANTY; without even the implied warranty of
+' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+' GNU General Public License for more details.
+'
+' You should have received a copy of the GNU General Public License
+' along with NuGardt ESL Wire Plugin Match Reminder; see the file COPYING. If not, write to
+' the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
+' http://www.gnu.org/copyleft/gpl.html
+'
+
+Namespace ESLWirePlugIn.MatchReminder
   <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
   Partial Class Settings
     'Das Formular überschreibt den Löschvorgang, um die Komponentenliste zu bereinigen.
@@ -440,8 +460,8 @@
       'cmdNewRow
       '
       Me.cmdNewRow.Dock = System.Windows.Forms.DockStyle.Fill
-      Me.cmdNewRow.Location = New System.Drawing.Point(3, 0)
-      Me.cmdNewRow.Margin = New System.Windows.Forms.Padding(3, 0, 0, 3)
+      Me.cmdNewRow.Location = New System.Drawing.Point(3, 3)
+      Me.cmdNewRow.Margin = New System.Windows.Forms.Padding(3, 3, 0, 0)
       Me.cmdNewRow.Name = "cmdNewRow"
       Me.cmdNewRow.Size = New System.Drawing.Size(103, 23)
       Me.cmdNewRow.TabIndex = 1
@@ -465,6 +485,7 @@
       Me.rtfLegend.Dock = System.Windows.Forms.DockStyle.Fill
       Me.rtfLegend.Location = New System.Drawing.Point(3, 16)
       Me.rtfLegend.Name = "rtfLegend"
+      Me.rtfLegend.ReadOnly = True
       Me.rtfLegend.Size = New System.Drawing.Size(265, 133)
       Me.rtfLegend.TabIndex = 5
       Me.rtfLegend.Text = resources.GetString("rtfLegend.Text")

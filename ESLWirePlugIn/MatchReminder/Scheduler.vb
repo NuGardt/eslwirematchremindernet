@@ -1,4 +1,23 @@
-﻿Imports System.Reflection
+﻿'
+' Copyright (C) 2012 NuGardt Software
+' http://www.nugardt.com
+'
+' This Program is free software; you can redistribute it and/or modify
+' it under the terms of the GNU General Public License as published by
+' the Free Software Foundation; either version 2, or (at your option)
+' any later version.
+'
+' This Program is distributed in the hope that it will be useful,
+' but WITHOUT ANY WARRANTY; without even the implied warranty of
+' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+' GNU General Public License for more details.
+'
+' You should have received a copy of the GNU General Public License
+' along with NuGardt ESL Wire Plugin Match Reminder; see the file COPYING. If not, write to
+' the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
+' http://www.gnu.org/copyleft/gpl.html
+'
+Imports System.Reflection
 Imports System.Windows.Forms
 Imports System.Threading
 Imports System.Speech.Synthesis
@@ -25,15 +44,15 @@ Namespace ESLWirePlugIn.MatchReminder
 
     Private WorkerThread As Thread
     Private ReadOnly Speech As SpeechSynthesizer
-    Private ReadOnly ContextMenu As ContextMenu
-    Private WithEvents mnuDescription As MenuItem
-    Private WithEvents mnuSettings As MenuItem
-    Private WithEvents mnuDeactivateNotification As MenuItem
-    Private WithEvents mnuDeactivateNotification5Minutes As MenuItem
-    Private WithEvents mnuDeactivateNotification10Minutes As MenuItem
-    Private WithEvents mnuDeactivateNotification30Minutes As MenuItem
-    Private WithEvents mnuDeactivateNotificationReactivate As MenuItem
-    Private WithEvents mnuAbout As MenuItem
+    Friend ReadOnly ContextMenuStrip As ContextMenuStrip
+    Private WithEvents MenuDescription As ToolStripLabel
+    Private WithEvents MenuSettings As ToolStripMenuItem
+    Private WithEvents MenuDeactivateNotification As ToolStripDropDownButton
+    Private WithEvents MenuDeactivateNotification5Minutes As ToolStripMenuItem
+    Private WithEvents MenuDeactivateNotification10Minutes As ToolStripMenuItem
+    Private WithEvents MenuDeactivateNotification30Minutes As ToolStripMenuItem
+    Private WithEvents MenuDeactivateNotificationReactivate As ToolStripMenuItem
+    Private WithEvents MenuAbout As ToolStripMenuItem
     Private DisableNotificationsTill As Nullable(Of DateTime)
 
     Public Sub New(ByVal Plugin As Plugin)
@@ -41,31 +60,31 @@ Namespace ESLWirePlugIn.MatchReminder
 
       Me.Plugin = Plugin
       Me.GI = InterfaceFactory.gameInterface()
-      Me.mnuDescription = New MenuItem(DefaultTrayText)
-      Me.mnuDescription.Enabled = False
-      Me.mnuSettings = New MenuItem("Settings")
-      Me.mnuDeactivateNotification = New MenuItem("Deactivate notifications")
-      Me.mnuDeactivateNotification5Minutes = New MenuItem("For 5 minutes")
-      Me.mnuDeactivateNotification10Minutes = New MenuItem("For 10 minutes")
-      Me.mnuDeactivateNotification30Minutes = New MenuItem("For 30 minutes")
-      Me.mnuDeactivateNotificationReactivate = New MenuItem("Reactivate")
-      Me.mnuDeactivateNotificationReactivate.Enabled = False
-      With Me.mnuDeactivateNotification.MenuItems
-        Call .Add(Me.mnuDeactivateNotification5Minutes)
-        Call .Add(Me.mnuDeactivateNotification10Minutes)
-        Call .Add(Me.mnuDeactivateNotification30Minutes)
-        Call .Add(New MenuItem("-"))
-        Call .Add(Me.mnuDeactivateNotificationReactivate)
+      Me.MenuDescription = New ToolStripLabel(DefaultTrayText)
+      Me.MenuDescription.Enabled = False
+      Me.MenuSettings = New ToolStripMenuItem("Settings")
+      Me.MenuDeactivateNotification = New ToolStripDropDownButton("Deactivate notifications")
+      Me.MenuDeactivateNotification5Minutes = New ToolStripMenuItem("For 5 minutes")
+      Me.MenuDeactivateNotification10Minutes = New ToolStripMenuItem("For 10 minutes")
+      Me.MenuDeactivateNotification30Minutes = New ToolStripMenuItem("For 30 minutes")
+      Me.MenuDeactivateNotificationReactivate = New ToolStripMenuItem("Reactivate")
+      Me.MenuDeactivateNotificationReactivate.Enabled = False
+      With Me.MenuDeactivateNotification.DropDownItems
+        Call .Add(Me.MenuDeactivateNotification5Minutes)
+        Call .Add(Me.MenuDeactivateNotification10Minutes)
+        Call .Add(Me.MenuDeactivateNotification30Minutes)
+        Call .Add(New ToolStripSeparator())
+        Call .Add(Me.MenuDeactivateNotificationReactivate)
       End With
-      Me.mnuAbout = New MenuItem("About")
+      Me.MenuAbout = New ToolStripMenuItem("About")
 
-      Me.ContextMenu = New ContextMenu()
-      With Me.ContextMenu.MenuItems
-        Call .Add(Me.mnuDescription)
-        Call .Add(Me.mnuSettings)
-        Call .Add(Me.mnuDeactivateNotification)
-        Call .Add(New MenuItem("-"))
-        Call .Add(Me.mnuAbout)
+      Me.ContextMenuStrip = New ContextMenuStrip()
+      With Me.ContextMenuStrip.Items
+        Call .Add(Me.MenuDescription)
+        Call .Add(Me.MenuSettings)
+        Call .Add(Me.MenuDeactivateNotification)
+        Call .Add(New ToolStripSeparator())
+        Call .Add(Me.MenuAbout)
       End With
 
       Me.TrayNotification = New NotifyIcon()
@@ -73,7 +92,7 @@ Namespace ESLWirePlugIn.MatchReminder
         .Icon = My.Resources.ICO_MatchReminder
         .Text = DefaultTrayText
         .BalloonTipTitle = DefaultTrayText
-        .ContextMenu = Me.ContextMenu
+        .ContextMenuStrip = Me.ContextMenuStrip
       End With
 
       Me.Speech = New SpeechSynthesizer()
@@ -204,7 +223,7 @@ Namespace ESLWirePlugIn.MatchReminder
             Me.DisableNotificationsTill = Nothing
             Call Me.MatchListUpdate()
 
-            Me.mnuDeactivateNotificationReactivate.Enabled = False
+            Me.MenuDeactivateNotificationReactivate.Enabled = False
             Call Me.SayEvent("Notifications resumed.")
           End If
 
@@ -468,46 +487,46 @@ Namespace ESLWirePlugIn.MatchReminder
     End Property
 
     Private Sub mnuSettings_Click(Sender As Object,
-                                  e As EventArgs) Handles mnuSettings.Click
+                                  e As EventArgs) Handles MenuSettings.Click
       Call Me.Plugin.OpenSettings()
     End Sub
 
     Private Sub mnuAbout_Click(Sender As Object,
-                               e As EventArgs) Handles mnuAbout.Click
+                               e As EventArgs) Handles MenuAbout.Click
       Call Me.Plugin.OpenAbout()
     End Sub
 
     Private Sub mnuDisableNotification5Minutes_Click(Sender As Object,
-                                                     e As EventArgs) Handles mnuDeactivateNotification5Minutes.Click
+                                                     e As EventArgs) Handles MenuDeactivateNotification5Minutes.Click
       Me.DisableNotificationsTill = Now.AddMinutes(5)
-      Me.mnuDeactivateNotificationReactivate.Enabled = True
+      Me.MenuDeactivateNotificationReactivate.Enabled = True
       Call Trace.WriteLine("Notifications will recomence at " + Me.DisableNotificationsTill.Value.ToString())
 
       Call Me.SayEvent("Notifications deactivated for 5 minutes.")
     End Sub
 
     Private Sub mnuDisableNotification10Minutes_Click(Sender As Object,
-                                                      e As EventArgs) Handles mnuDeactivateNotification10Minutes.Click
+                                                      e As EventArgs) Handles MenuDeactivateNotification10Minutes.Click
       Me.DisableNotificationsTill = Now.AddMinutes(10)
-      Me.mnuDeactivateNotificationReactivate.Enabled = True
+      Me.MenuDeactivateNotificationReactivate.Enabled = True
       Call Trace.WriteLine("Notifications will recomence at " + Me.DisableNotificationsTill.Value.ToString())
 
       Call Me.SayEvent("Notifications deactivated for 10 minutes.")
     End Sub
 
     Private Sub mnuDisableNotification30Minutes_Click(Sender As Object,
-                                                      e As EventArgs) Handles mnuDeactivateNotification30Minutes.Click
+                                                      e As EventArgs) Handles MenuDeactivateNotification30Minutes.Click
       Me.DisableNotificationsTill = Now.AddMinutes(30)
-      Me.mnuDeactivateNotificationReactivate.Enabled = True
+      Me.MenuDeactivateNotificationReactivate.Enabled = True
       Call Trace.WriteLine("Notifications will recomence at " + Me.DisableNotificationsTill.Value.ToString())
 
       Call Me.SayEvent("Notifications deactivated for 30 minutes.")
     End Sub
 
     Private Sub mnuDisableNotificationReenable_Click(Sender As Object,
-                                                     e As EventArgs) Handles mnuDeactivateNotificationReactivate.Click
+                                                     e As EventArgs) Handles MenuDeactivateNotificationReactivate.Click
       If Me.DisableNotificationsTill.HasValue AndAlso Me.Settings.EnableVoiceAnnouncement Then
-        Me.mnuDeactivateNotificationReactivate.Enabled = False
+        Me.MenuDeactivateNotificationReactivate.Enabled = False
         Call Me.SayEvent("Notifications re-activated.")
       End If
 
