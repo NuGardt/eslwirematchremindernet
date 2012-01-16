@@ -250,7 +250,7 @@ Namespace ESLWirePlugIn.MatchReminder
       If IsActiveMatch(Reminder.Match.ID) Then
         Dim Message As String
 
-        Message = Reminder.Message.Replace("$timeremaining$", FormatTimeSpan(Reminder.Match.Time - JustNow))
+        Message = Reminder.Message.Replace("$timetomatch$", FormatTimeSpan(Reminder.Match.Time - JustNow))
 
         If Me.Settings.EnableInGameNotification AndAlso Reminder.ShowInGame Then Call Me.GI.showInGameNotification(Message, DefaultTrayText, Reminder.NotificationDurationInSeconds)
         If Me.Settings.EnableBalloonNotification AndAlso Reminder.ShowBalloon Then
@@ -384,7 +384,7 @@ Namespace ESLWirePlugIn.MatchReminder
       If Not dictFormat.ContainsKey("$time$") Then Call dictFormat.Add("$time$", Match.Time.ToString())
       If Not dictFormat.ContainsKey("$uri$") Then Call dictFormat.Add("$uri$", Match.Uri)
 
-      If ProcessTimeRemaining AndAlso Not dictFormat.ContainsKey("$timeremaining$") Then Call dictFormat.Add("$timeremaining$", FormatTimeSpan(Match.Time - Now))
+      If ProcessTimeRemaining AndAlso Not dictFormat.ContainsKey("$timetomatch$") Then Call dictFormat.Add("$timetomatch$", FormatTimeSpan(Match.Time - Now))
 
       Return DictReplace(MessageFormat, dictFormat)
     End Function

@@ -29,7 +29,7 @@ Namespace ESLWirePlugIn.MatchReminder
     Public Shared ReadOnly MaxPriorTime As TimeSpan = TimeSpan.FromSeconds(24 * 60 * 60)
     Public Shared ReadOnly MinNotificationDurationTime As TimeSpan = TimeSpan.FromSeconds(1)
     Public Shared ReadOnly MaxNotificationDurationTime As TimeSpan = TimeSpan.FromSeconds(60 * 60)
-    Public Const DefaultMessageFormat As String = "Your match $name$ in $gametitle$ is in $timeremaining$."
+    Public Const DefaultMessageFormat As String = "Your match $name$ in $gametitle$ is in $timetomatch$."
     Public Const DefaultNotifyInGame As Boolean = True
     Public Const DefaultShowBaloon As Boolean = True
     Public Const DefaultVoiceAnnounce As Boolean = True

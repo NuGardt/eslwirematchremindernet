@@ -182,7 +182,7 @@ The time when the match starts\par
 The link to the match\par
 Example: "http://www.esl.eu"\par
 \par
-\b $timeremaining$\b0\par
+\b $timetomatch$\b0\par
 The time remaining till the match starts\par
 Example: "1 day 14 hours 37 minutes 2 seconds"\par
 \pard\sa200\sl276\slmult1\lang7\f1\fs22\par

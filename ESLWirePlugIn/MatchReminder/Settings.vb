@@ -101,7 +101,7 @@ Namespace ESLWirePlugIn.MatchReminder
 
       Me.grdView.RowCount = Me.List.Count
     End Sub
-
+    
     Private Sub grdView_CellContentClick(sender As Object, e As System.Windows.Forms.DataGridViewCellEventArgs) Handles grdView.CellContentClick
       Select Case e.RowIndex
         Case 0 To Me.List.Count - 1
@@ -143,7 +143,7 @@ Namespace ESLWirePlugIn.MatchReminder
               Match.Time = Now.AddSeconds(Item.NotifyTimeBeforeMatch)
 
               Call Me.Scheduler.ShowNotification(Now, New ReminderItem(Match, Now, Item.NotificationDuration, Scheduler.FormatMessage(Match, Item.MessageFormat), Item.ShowInGameNotification, Item.ShowBaloonNotification, Item.VoiceAnnounce))
-          End Select
+            End Select
       End Select
     End Sub
 

@@ -43,14 +43,6 @@ Namespace ESLWirePlugIn.MatchReminder
     Private Sub InitializeComponent()
       Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Settings))
       Me.grdView = New System.Windows.Forms.DataGridView()
-      Me.colDelete = New System.Windows.Forms.DataGridViewButtonColumn()
-      Me.colNotficationPrior = New System.Windows.Forms.DataGridViewTextBoxColumn()
-      Me.colNotificationDuration = New System.Windows.Forms.DataGridViewTextBoxColumn()
-      Me.colNotifyInGame = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-      Me.colNotifyWithBaloon = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-      Me.colVoiceAnnounce = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-      Me.colTest = New System.Windows.Forms.DataGridViewButtonColumn()
-      Me.colNotificationFormat = New System.Windows.Forms.DataGridViewTextBoxColumn()
       Me.panMain = New System.Windows.Forms.TableLayoutPanel()
       Me.cmdDiscard = New System.Windows.Forms.Button()
       Me.cmdApply = New System.Windows.Forms.Button()
@@ -74,8 +66,16 @@ Namespace ESLWirePlugIn.MatchReminder
       Me.chkVoiceAnnouncements = New System.Windows.Forms.CheckBox()
       Me.chkShowTrayIcon = New System.Windows.Forms.CheckBox()
       Me.cmdNewRow = New System.Windows.Forms.Button()
-      Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+      Me.panLegend = New System.Windows.Forms.GroupBox()
       Me.rtfLegend = New System.Windows.Forms.RichTextBox()
+      Me.colDelete = New System.Windows.Forms.DataGridViewButtonColumn()
+      Me.colNotficationPrior = New System.Windows.Forms.DataGridViewTextBoxColumn()
+      Me.colNotificationDuration = New System.Windows.Forms.DataGridViewTextBoxColumn()
+      Me.colNotifyInGame = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+      Me.colNotifyWithBaloon = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+      Me.colVoiceAnnounce = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+      Me.colTest = New System.Windows.Forms.DataGridViewButtonColumn()
+      Me.colNotificationFormat = New System.Windows.Forms.DataGridViewTextBoxColumn()
       CType(Me.grdView, System.ComponentModel.ISupportInitialize).BeginInit()
       Me.panMain.SuspendLayout()
       Me.panTTSOptions.SuspendLayout()
@@ -84,7 +84,7 @@ Namespace ESLWirePlugIn.MatchReminder
       CType(Me.barRate, System.ComponentModel.ISupportInitialize).BeginInit()
       Me.panGlobalOptions.SuspendLayout()
       Me.panGlocalOptionsContents.SuspendLayout()
-      Me.GroupBox1.SuspendLayout()
+      Me.panLegend.SuspendLayout()
       Me.SuspendLayout()
       '
       'grdView
@@ -102,62 +102,6 @@ Namespace ESLWirePlugIn.MatchReminder
       Me.grdView.TabIndex = 0
       Me.grdView.VirtualMode = True
       '
-      'colDelete
-      '
-      Me.colDelete.FlatStyle = System.Windows.Forms.FlatStyle.System
-      Me.colDelete.Frozen = True
-      Me.colDelete.HeaderText = "Delete"
-      Me.colDelete.Name = "colDelete"
-      Me.colDelete.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-      Me.colDelete.Text = "Delete"
-      Me.colDelete.ToolTipText = "Delete"
-      Me.colDelete.UseColumnTextForButtonValue = True
-      '
-      'colNotficationPrior
-      '
-      Me.colNotficationPrior.HeaderText = "Notify prior to Match"
-      Me.colNotficationPrior.Name = "colNotficationPrior"
-      '
-      'colNotificationDuration
-      '
-      Me.colNotificationDuration.HeaderText = "Notification duration"
-      Me.colNotificationDuration.Name = "colNotificationDuration"
-      '
-      'colNotifyInGame
-      '
-      Me.colNotifyInGame.HeaderText = "Show in game"
-      Me.colNotifyInGame.Name = "colNotifyInGame"
-      '
-      'colNotifyWithBaloon
-      '
-      Me.colNotifyWithBaloon.HeaderText = "Show balloon"
-      Me.colNotifyWithBaloon.Name = "colNotifyWithBaloon"
-      '
-      'colVoiceAnnounce
-      '
-      Me.colVoiceAnnounce.HeaderText = "Voice announce"
-      Me.colVoiceAnnounce.Name = "colVoiceAnnounce"
-      Me.colVoiceAnnounce.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-      Me.colVoiceAnnounce.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-      '
-      'colTest
-      '
-      Me.colTest.HeaderText = "Test"
-      Me.colTest.Name = "colTest"
-      Me.colTest.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-      Me.colTest.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-      Me.colTest.Text = "Test"
-      Me.colTest.ToolTipText = "Test"
-      Me.colTest.UseColumnTextForButtonValue = True
-      '
-      'colNotificationFormat
-      '
-      Me.colNotificationFormat.HeaderText = "Format"
-      Me.colNotificationFormat.Name = "colNotificationFormat"
-      Me.colNotificationFormat.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-      Me.colNotificationFormat.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-      Me.colNotificationFormat.Width = 400
-      '
       'panMain
       '
       Me.panMain.ColumnCount = 6
@@ -173,7 +117,7 @@ Namespace ESLWirePlugIn.MatchReminder
       Me.panMain.Controls.Add(Me.panTTSOptions, 2, 2)
       Me.panMain.Controls.Add(Me.panGlobalOptions, 0, 2)
       Me.panMain.Controls.Add(Me.cmdNewRow, 0, 0)
-      Me.panMain.Controls.Add(Me.GroupBox1, 3, 2)
+      Me.panMain.Controls.Add(Me.panLegend, 3, 2)
       Me.panMain.Dock = System.Windows.Forms.DockStyle.Fill
       Me.panMain.Location = New System.Drawing.Point(0, 0)
       Me.panMain.Margin = New System.Windows.Forms.Padding(0)
@@ -468,17 +412,17 @@ Namespace ESLWirePlugIn.MatchReminder
       Me.cmdNewRow.Text = "&New"
       Me.cmdNewRow.UseVisualStyleBackColor = True
       '
-      'GroupBox1
+      'panLegend
       '
-      Me.GroupBox1.Controls.Add(Me.rtfLegend)
-      Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Fill
-      Me.GroupBox1.Location = New System.Drawing.Point(663, 287)
-      Me.GroupBox1.Name = "GroupBox1"
-      Me.panMain.SetRowSpan(Me.GroupBox1, 2)
-      Me.GroupBox1.Size = New System.Drawing.Size(271, 152)
-      Me.GroupBox1.TabIndex = 4
-      Me.GroupBox1.TabStop = False
-      Me.GroupBox1.Text = "Legend"
+      Me.panLegend.Controls.Add(Me.rtfLegend)
+      Me.panLegend.Dock = System.Windows.Forms.DockStyle.Fill
+      Me.panLegend.Location = New System.Drawing.Point(663, 287)
+      Me.panLegend.Name = "panLegend"
+      Me.panMain.SetRowSpan(Me.panLegend, 2)
+      Me.panLegend.Size = New System.Drawing.Size(271, 152)
+      Me.panLegend.TabIndex = 4
+      Me.panLegend.TabStop = False
+      Me.panLegend.Text = "Legend"
       '
       'rtfLegend
       '
@@ -489,6 +433,62 @@ Namespace ESLWirePlugIn.MatchReminder
       Me.rtfLegend.Size = New System.Drawing.Size(265, 133)
       Me.rtfLegend.TabIndex = 5
       Me.rtfLegend.Text = resources.GetString("rtfLegend.Text")
+      '
+      'colDelete
+      '
+      Me.colDelete.FlatStyle = System.Windows.Forms.FlatStyle.System
+      Me.colDelete.Frozen = True
+      Me.colDelete.HeaderText = "Delete"
+      Me.colDelete.Name = "colDelete"
+      Me.colDelete.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+      Me.colDelete.Text = "Delete"
+      Me.colDelete.ToolTipText = "Delete"
+      Me.colDelete.UseColumnTextForButtonValue = True
+      '
+      'colNotficationPrior
+      '
+      Me.colNotficationPrior.HeaderText = "Notify prior to Match"
+      Me.colNotficationPrior.Name = "colNotficationPrior"
+      Me.colNotficationPrior.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+      '
+      'colNotificationDuration
+      '
+      Me.colNotificationDuration.HeaderText = "Notification duration"
+      Me.colNotificationDuration.Name = "colNotificationDuration"
+      Me.colNotificationDuration.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+      '
+      'colNotifyInGame
+      '
+      Me.colNotifyInGame.HeaderText = "Show in game"
+      Me.colNotifyInGame.Name = "colNotifyInGame"
+      '
+      'colNotifyWithBaloon
+      '
+      Me.colNotifyWithBaloon.HeaderText = "Show balloon"
+      Me.colNotifyWithBaloon.Name = "colNotifyWithBaloon"
+      '
+      'colVoiceAnnounce
+      '
+      Me.colVoiceAnnounce.HeaderText = "Voice announce"
+      Me.colVoiceAnnounce.Name = "colVoiceAnnounce"
+      Me.colVoiceAnnounce.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+      '
+      'colTest
+      '
+      Me.colTest.HeaderText = "Test"
+      Me.colTest.Name = "colTest"
+      Me.colTest.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+      Me.colTest.Text = "Test"
+      Me.colTest.ToolTipText = "Test"
+      Me.colTest.UseColumnTextForButtonValue = True
+      '
+      'colNotificationFormat
+      '
+      Me.colNotificationFormat.HeaderText = "Format"
+      Me.colNotificationFormat.Name = "colNotificationFormat"
+      Me.colNotificationFormat.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+      Me.colNotificationFormat.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+      Me.colNotificationFormat.Width = 400
       '
       'Settings
       '
@@ -511,7 +511,7 @@ Namespace ESLWirePlugIn.MatchReminder
       Me.panGlobalOptions.ResumeLayout(False)
       Me.panGlocalOptionsContents.ResumeLayout(False)
       Me.panGlocalOptionsContents.PerformLayout()
-      Me.GroupBox1.ResumeLayout(False)
+      Me.panLegend.ResumeLayout(False)
       Me.ResumeLayout(False)
 
     End Sub
@@ -526,14 +526,6 @@ Namespace ESLWirePlugIn.MatchReminder
     Friend WithEvents chkEnableBalloonNotifications As System.Windows.Forms.CheckBox
     Friend WithEvents chkVoiceAnnouncements As System.Windows.Forms.CheckBox
     Friend WithEvents chkShowTrayIcon As System.Windows.Forms.CheckBox
-    Friend WithEvents colDelete As System.Windows.Forms.DataGridViewButtonColumn
-    Friend WithEvents colNotficationPrior As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents colNotificationDuration As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents colNotifyInGame As System.Windows.Forms.DataGridViewCheckBoxColumn
-    Friend WithEvents colNotifyWithBaloon As System.Windows.Forms.DataGridViewCheckBoxColumn
-    Friend WithEvents colVoiceAnnounce As System.Windows.Forms.DataGridViewCheckBoxColumn
-    Friend WithEvents colTest As System.Windows.Forms.DataGridViewButtonColumn
-    Friend WithEvents colNotificationFormat As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents panTTSOptions As System.Windows.Forms.GroupBox
     Friend WithEvents panTextToSpeechContents As System.Windows.Forms.TableLayoutPanel
     Friend WithEvents barVolume As System.Windows.Forms.TrackBar
@@ -547,7 +539,15 @@ Namespace ESLWirePlugIn.MatchReminder
     Friend WithEvents lblVolumeSofter As System.Windows.Forms.Label
     Friend WithEvents lblVolumeLouder As System.Windows.Forms.Label
     Friend WithEvents cmdDiscard As System.Windows.Forms.Button
-    Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
+    Friend WithEvents panLegend As System.Windows.Forms.GroupBox
     Friend WithEvents rtfLegend As System.Windows.Forms.RichTextBox
+    Friend WithEvents colDelete As System.Windows.Forms.DataGridViewButtonColumn
+    Friend WithEvents colNotficationPrior As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents colNotificationDuration As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents colNotifyInGame As System.Windows.Forms.DataGridViewCheckBoxColumn
+    Friend WithEvents colNotifyWithBaloon As System.Windows.Forms.DataGridViewCheckBoxColumn
+    Friend WithEvents colVoiceAnnounce As System.Windows.Forms.DataGridViewCheckBoxColumn
+    Friend WithEvents colTest As System.Windows.Forms.DataGridViewButtonColumn
+    Friend WithEvents colNotificationFormat As System.Windows.Forms.DataGridViewTextBoxColumn
   End Class
 End Namespace

@@ -1,7 +1,7 @@
 NuGardt ESL Wire Plugin Match Reminder v1.0.0.0
 -----------------------------------------------
 Author: Kevin 'OomJan' Gardthausen
-Last Update: 22.01.2012
+Last Update: 16.01.2012
 
 The match reminder is a plugin for ESL Wire (http://www.esl.eu/wire).
 
@@ -11,7 +11,7 @@ Notifications can be shown in game (through ESL Wire when supported), via a ball
 
 Set multiple notification before a match start, set different options for each notification.
 
-Want more stuff in this plugin? Message me with your suggestions or do it your self. This plugin is open source. Written in Visual Basic.net. Source codes available on code.google.com/TBD (GNU GPL v2 License).
+Want more stuff in this plugin? Message me with your suggestions or do it your self. This plugin is open source. Written in Visual Basic.net. Source codes available on http://code.google.com/p/eslwirematchremindernet/ (GNU GPL v2 License).
 
 
 Format place holders
@@ -53,7 +53,7 @@ $uri$
 The link to the match
 Example: "http://www.esl.eu"
 
-$timeremaining$
+$timetomatch$
 The time remaining till the match starts
 Example: "1 day 14 hours 37 minutes 2 seconds"
 
