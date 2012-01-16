@@ -1,7 +1,7 @@
 NuGardt ESL Wire Plugin Match Reminder v1.0.0.0
 -----------------------------------------------
 Author: Kevin 'OomJan' Gardthausen
-Last Update: 22.01.2012
+Last Update: 16.01.2012
 
 The match reminder is a plugin for ESL Wire (http://www.esl.eu/wire).
 
@@ -66,4 +66,4 @@ E-mail: kevin@nugardt.com
 License
 -------
 GNU GPL v2
-Please see LICENSE.txt for details.
+Please see COPYING.txt for details.
