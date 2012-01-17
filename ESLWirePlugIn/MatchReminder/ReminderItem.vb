@@ -17,7 +17,8 @@
 '
 
 Namespace ESLWirePlugIn.MatchReminder
-  Friend Structure ReminderItem
+  Friend Class ReminderItem
+    Implements IComparable(Of ReminderItem)
     Public ReadOnly Match As Match
     Public ReadOnly Annouce As DateTime
     Public ReadOnly NotificationDurationInSeconds As Integer
@@ -26,6 +27,31 @@ Namespace ESLWirePlugIn.MatchReminder
     Public ReadOnly ShowInGame As Boolean
     Public ReadOnly ShowBalloon As Boolean
     Public ReadOnly VoiceAnnounce As Boolean
+
+#Region "Compare"
+
+    Public Function CompareTo(Other As ReminderItem) As Integer Implements IComparable(Of ReminderItem).CompareTo
+      Return CompareByAnnounce(Me, Other)
+    End Function
+
+    Public Shared Function CompareByAnnounce(ByVal X As ReminderItem,
+                                             ByVal Y As ReminderItem) As Integer
+      Dim Erg As Integer = 0
+
+      If (X IsNot Nothing) Then
+        If (Y IsNot Nothing) Then
+          Erg = X.Annouce.CompareTo(Y.Annouce)
+        Else
+          Erg = 1
+        End If
+      ElseIf (Y IsNot Nothing) Then
+        Erg = - 1
+      End If
+
+      Return Erg
+    End Function
+
+#End Region
 
     Public Sub New(ByVal Match As Match,
                    ByVal Annouce As DateTime,
@@ -51,5 +77,5 @@ Namespace ESLWirePlugIn.MatchReminder
         Return False
       End If
     End Function
-  End Structure
+  End Class
 End Namespace

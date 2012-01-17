@@ -76,7 +76,7 @@ Namespace ESLWirePlugIn.MatchReminder
           Call Me.OnWillDispose()
         Catch iEx As Exception
 #If DEBUG Then
-          Trace.WriteLine(iEx, "OnWillDispose")
+          Call Trace.WriteLine(iEx, "OnWillDispose")
 #End If
         End Try
 
@@ -84,7 +84,7 @@ Namespace ESLWirePlugIn.MatchReminder
           Call Me.iDispose1()
         Catch iEx As Exception
 #If DEBUG Then
-          Trace.WriteLine(iEx, "iiDispose")
+          Call Trace.WriteLine(iEx, "iiDispose")
 #End If
         End Try
 
@@ -93,13 +93,13 @@ Namespace ESLWirePlugIn.MatchReminder
           Call Me.OnDisposed()
         Catch iEx As Exception
 #If DEBUG Then
-          Trace.WriteLine(iEx, "OnDisposed")
+          Call Trace.WriteLine(iEx, "OnDisposed")
 #End If
         End Try
         Me.m_IsDisposing = False
 #If DEBUG Then
       Else
-        Trace.WriteLine(Ex)
+        Call Trace.WriteLine(Ex)
 #End If
       End If
     End Sub
@@ -118,34 +118,19 @@ Namespace ESLWirePlugIn.MatchReminder
       End Get
     End Property
 
-    Protected Overloads Function TestNotDisposed(ByRef Ex As Exception) As Boolean
-      Return Me.iTestNotDisposed(False, Ex)
+    Protected Overloads Function TestNotDisposed(Optional ByRef Ex As Exception = Nothing) As Boolean
+      Return Me.iTestNotDisposed(Ex)
     End Function
 
-    Protected Overloads Function TestNotDisposed(ByVal ThrowError As Boolean,
-                                                 Optional ByRef Ex As Exception = Nothing) As Boolean
-      Return Me.iTestNotDisposed(ThrowError, Ex)
-    End Function
-
-    Private Function iTestNotDisposed(ByVal ThrowError As Boolean,
-                                      Optional ByRef Ex As Exception = Nothing) As Boolean
+    Private Function iTestNotDisposed(Optional ByRef Ex As Exception = Nothing) As Boolean
       Ex = Nothing
 
       If Me.m_IsDisposed Then
-        If ThrowError Then
-          Ex = New ObjectDisposedException(Me.GetType.ToString())
-        Else
-          Ex = New ObjectDisposedException(Me.GetType.ToString(), (New StackTrace(2)).ToString)
-        End If
+        Ex = New ObjectDisposedException(Me.GetType.ToString(), (New StackTrace(2)).ToString)
       ElseIf Me.m_IsDisposing Then
-        If ThrowError Then
-          Ex = New Exception(String.Format("{0} is disposing", Me.GetType.ToString()))
-        Else
-          Ex = New Exception(String.Format("{0} is disposing while {1}", Me.GetType.ToString(), (New StackTrace(2)).ToString))
-        End If
+        Ex = New Exception(String.Format("{0} is disposing while {1}", Me.GetType.ToString(), (New StackTrace(2)).ToString))
       End If
 
-      If ThrowError AndAlso (Ex IsNot Nothing) Then Throw Ex
       Return (Ex Is Nothing)
     End Function
   End Class

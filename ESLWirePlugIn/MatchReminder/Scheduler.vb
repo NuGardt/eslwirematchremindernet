@@ -19,7 +19,6 @@ Imports System.Reflection
 Imports System.Windows.Forms
 Imports System.Threading
 Imports System.Speech.Synthesis
-Imports System.Collections.ObjectModel
 Imports Wire
 
 Namespace ESLWirePlugIn.MatchReminder
@@ -37,7 +36,7 @@ Namespace ESLWirePlugIn.MatchReminder
     Friend WithEvents GI As GameInterface
     Private ReadOnly Plugin As Plugin
 
-    Private ReadOnly ListReminders As IList(Of ReminderItem)
+    Private ReadOnly QueueReminders As Queue(Of ReminderItem)
     Private ActiveMatchID As Nullable(Of Integer)
 
     Private WorkerThread As Thread
@@ -94,7 +93,7 @@ Namespace ESLWirePlugIn.MatchReminder
       End With
 
       Me.Speech = New SpeechSynthesizer()
-      Me.ListReminders = New Collection(Of ReminderItem)()
+      Me.QueueReminders = New Queue(Of ReminderItem)()
       Me.ActiveMatchID = Nothing
     End Sub
 
@@ -160,34 +159,31 @@ Namespace ESLWirePlugIn.MatchReminder
     Private Sub Work()
       Dim tSleep As Integer = 0
       Dim JustNow As DateTime
-      Dim tNextMatch As DateTime
-      Dim ListExpiredReminders As New List(Of ReminderItem)
+      'Dim tNextMatch As DateTime
+      'Dim ListExpiredReminders As New List(Of ReminderItem)
       Dim NextMatchMessage As String = Nothing
+      Dim Reminder As ReminderItem
 
       Call Trace.WriteLine("Starting worker.")
 
       Try
-        Do While Me.TestNotDisposed(False) AndAlso Me.Settings.EnableNotifications
+        Do While Me.TestNotDisposed() AndAlso Me.Settings.EnableNotifications
           JustNow = Now
-          tNextMatch = JustNow
+          'tNextMatch = JustNow
 
           If Not Me.DisableNotificationsTill.HasValue Then
             SyncLock Me.LockObject
-              With Me.ListReminders.GetEnumerator()
-                Call .Reset()
+              If Me.QueueReminders.Count > 0 Then
+                If Me.QueueReminders.Peek().IsExpired(JustNow) Then
+                  Reminder = Me.QueueReminders.Dequeue()
 
-                Do While .MoveNext()
-                  If .Current.IsExpired(JustNow) Then Call ListExpiredReminders.Add(.Current)
+                  Call Me.ShowNotification(JustNow, Reminder)
 
-                  If .Current.Annouce >= tNextMatch Then
-                    tNextMatch = .Current.Annouce
-
-                    NextMatchMessage = String.Format("Next match in {0}.", FormatTimeSpan(.Current.Match.Time - JustNow))
-                  End If
-                Loop
-
-                Call .Dispose()
-              End With
+                  NextMatchMessage = String.Format("Next match in {0}.", FormatTimeSpan(Reminder.Match.Time - JustNow))
+                Else
+                  NextMatchMessage = String.Format("Next match in {0}.", FormatTimeSpan(Me.QueueReminders.Peek.Match.Time - JustNow))
+                End If
+              End If
 
               If String.IsNullOrEmpty(NextMatchMessage) Then
                 Call Me.SetTrayNotificationText(DefaultTrayText)
@@ -196,27 +192,27 @@ Namespace ESLWirePlugIn.MatchReminder
               End If
               NextMatchMessage = Nothing
 
-              If ListExpiredReminders.Count > 0 Then
-                With ListExpiredReminders.GetEnumerator()
-                  Do While .MoveNext()
-                    Call Me.ListReminders.Remove(.Current)
-                  Loop
-                  Call .Dispose()
-                End With
-              End If
+              '  If ListExpiredReminders.Count > 0 Then
+              '    With ListExpiredReminders.GetEnumerator()
+              '      Do While .MoveNext()
+              '        Call Me.ListReminders.Remove(.Current)
+              '      Loop
+              '      Call .Dispose()
+              '    End With
+              '  End If
             End SyncLock
 
-            If ListExpiredReminders.Count > 0 Then
-              With ListExpiredReminders.GetEnumerator()
-                Do While .MoveNext()
-                  Call Me.ShowNotification(JustNow, .Current)
-                Loop
+            'If ListExpiredReminders.Count > 0 Then
+            '  With ListExpiredReminders.GetEnumerator()
+            '    Do While .MoveNext()
+            '      Call Me.ShowNotification(JustNow, .Current)
+            '    Loop
 
-                Call .Dispose()
-              End With
+            '    Call .Dispose()
+            '  End With
 
-              Call ListExpiredReminders.Clear()
-            End If
+            '  Call ListExpiredReminders.Clear()
+            'End If
           ElseIf Me.DisableNotificationsTill.Value < JustNow Then
             Me.DisableNotificationsTill = Nothing
             Call Me.MatchListUpdate()
@@ -229,7 +225,7 @@ Namespace ESLWirePlugIn.MatchReminder
             Call Thread.Sleep(100)
             tSleep += 100
 
-            If Not Me.TestNotDisposed(False) Then Exit Do
+            If Not Me.TestNotDisposed() Then Exit Do
           Loop
           tSleep = 0
         Loop
@@ -350,16 +346,29 @@ Namespace ESLWirePlugIn.MatchReminder
 
     Private Sub MatchListUpdate()
       Dim tMatch As Match = Nothing
-
-      Call Me.ListReminders.Clear()
+      Dim tReminders As New List(Of ReminderItem)
 
       With Me.GI.matches.GetEnumerator()
         Call .Reset()
 
         Do While .MoveNext()
-          If Match.ToMatch(DirectCast(.Current, IDictionary), tMatch) Then Call Me.AddMatchReminder(tMatch)
+          If Match.ToMatch(DirectCast(.Current, IDictionary), tMatch) Then Call tReminders.AddRange(Me.GenerateMatchReminders(tMatch))
         Loop
       End With
+
+      Call tReminders.Sort(AddressOf ReminderItem.CompareByAnnounce)
+
+      SyncLock Me.LockObject
+        Call Me.QueueReminders.Clear()
+
+        With tReminders.GetEnumerator()
+          Do While .MoveNext()
+            Call Me.QueueReminders.Enqueue(.Current)
+          Loop
+
+          Call .Dispose()
+        End With
+      End SyncLock
     End Sub
 
     Public Function FormatMessage(ByVal Match As Match,
@@ -384,19 +393,22 @@ Namespace ESLWirePlugIn.MatchReminder
       Return DictReplace(MessageFormat, dictFormat)
     End Function
 
-    Private Sub AddMatchReminder(ByVal Match As Match)
+    Private Function GenerateMatchReminders(ByVal Match As Match) As IEnumerable(Of ReminderItem)
       Dim JustNow As DateTime = Now
+      Dim Erg As New List(Of ReminderItem)
 
       SyncLock Me.LockObject
         With Me.Settings.Notifications.GetEnumerator()
           Do While .MoveNext()
-            If Match.Time.AddSeconds(0 - .Current.NotifyTimeBeforeMatch) > JustNow Then Call Me.ListReminders.Add(New ReminderItem(Match, Match.Time.AddSeconds(0 - .Current.NotifyTimeBeforeMatch), .Current.NotificationDuration, FormatMessage(Match, .Current.MessageFormat), .Current.ShowInGameNotification, .Current.ShowBaloonNotification, .Current.VoiceAnnounce))
+            If Match.Time.AddSeconds(0 - .Current.NotifyTimeBeforeMatch) > JustNow Then Call Erg.Add(New ReminderItem(Match, Match.Time.AddSeconds(0 - .Current.NotifyTimeBeforeMatch), .Current.NotificationDuration, FormatMessage(Match, .Current.MessageFormat), .Current.ShowInGameNotification, .Current.ShowBaloonNotification, .Current.VoiceAnnounce))
           Loop
 
           Call .Dispose()
         End With
       End SyncLock
-    End Sub
+
+      Return Erg
+    End Function
 
     Private Shared Function DictReplace(ByVal Format As String,
                                         ByVal DictValues As IEnumerable(Of KeyValuePair(Of String, String))) As String

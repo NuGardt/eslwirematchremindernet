@@ -50,7 +50,8 @@ Namespace ESLWirePlugIn.MatchReminder
       Call Me.Plugin.AboutFormClose()
     End Sub
 
-    Private Sub LinkLabel1_LinkClicked(Sender As System.Object, e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles lblLicense.LinkClicked
+    Private Sub LinkLabel1_LinkClicked(Sender As Object,
+                                       e As LinkLabelLinkClickedEventArgs) Handles lblLicense.LinkClicked
       Call Process.Start(Me.lblLicense.Text)
     End Sub
   End Class
