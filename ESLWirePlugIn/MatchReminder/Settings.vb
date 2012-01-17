@@ -109,6 +109,7 @@ Namespace ESLWirePlugIn.MatchReminder
             Case Me.colDelete.Index
               Call Me.List.RemoveAt(e.RowIndex)
               Me.grdView.RowCount = Me.List.Count
+              Call Me.grdView.Invalidate()
             Case Me.colTest.Index
               Dim Match As Match = Nothing
 
@@ -260,6 +261,7 @@ Namespace ESLWirePlugIn.MatchReminder
     End Sub
 
     Private Sub cmdDiscard_Click(sender As System.Object, e As System.EventArgs) Handles cmdDiscard.Click
+      Call Me.Scheduler.SayEvent("Settings discarded.")
       Call Me.Close(True)
     End Sub
   End Class

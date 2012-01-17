@@ -427,7 +427,7 @@ Namespace ESLWirePlugIn.MatchReminder
       End SyncLock
     End Function
 
-    Private Sub SayEvent(ByVal Message As String)
+    Friend Sub SayEvent(ByVal Message As String)
       If Me.Settings.EnableVoiceAnnouncement Then
         Call Me.Speech.SpeakAsyncCancelAll()
         Call Me.Speech.SpeakAsync(Message)

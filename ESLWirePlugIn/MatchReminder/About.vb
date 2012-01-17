@@ -18,12 +18,14 @@
 Imports System.Windows.Forms
 
 Namespace ESLWirePlugIn.MatchReminder
-  Public Class About
+  Friend Class About
     Inherits Form
 
     Private ReadOnly Plugin As Plugin
+    Private ReadOnly Scheduler As Scheduler
 
-    Public Sub New(ByVal Plugin As Plugin)
+    Public Sub New(ByVal Plugin As Plugin,
+                   ByVal Scheduler As Scheduler)
       Call MyBase.New()
 
       ' Dieser Aufruf ist für den Designer erforderlich.
@@ -33,6 +35,17 @@ Namespace ESLWirePlugIn.MatchReminder
       Me.Icon = My.Resources.ICO_MatchReminder
 
       Me.Plugin = Plugin
+      Me.Scheduler = Scheduler
+    End Sub
+
+    Private Sub About_Shown(Sender As Object,
+                            e As EventArgs) Handles Me.Shown
+      Call Me.Scheduler.SayEvent("Welcome to the E S L Wire plug in Match Reminder.")
+    End Sub
+
+    Private Sub About_FormClosing(Sender As Object,
+                                  e As FormClosingEventArgs) Handles Me.FormClosing
+      Call Me.Plugin.AboutFormClose()
     End Sub
 
     Private Sub cmdOk_Click(Sender As Object,
@@ -43,11 +56,6 @@ Namespace ESLWirePlugIn.MatchReminder
     Private Sub lblLink_LinkClicked(Sender As Object,
                                     e As LinkLabelLinkClickedEventArgs) Handles lblLink.LinkClicked
       Call Process.Start(Me.lblLink.Text)
-    End Sub
-
-    Private Sub About_FormClosing(Sender As Object,
-                                  e As FormClosingEventArgs) Handles Me.FormClosing
-      Call Me.Plugin.AboutFormClose()
     End Sub
 
     Private Sub lblLicense_LinkClicked(Sender As Object,

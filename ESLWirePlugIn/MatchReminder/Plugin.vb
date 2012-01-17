@@ -80,7 +80,7 @@ Namespace ESLWirePlugIn.MatchReminder
       If Me.AboutForm IsNot Nothing Then
         Call Me.AboutForm.Show()
       Else
-        Me.AboutForm = New About(Me)
+        Me.AboutForm = New About(Me, Me.Scheduler)
         Call Me.AboutForm.Show()
       End If
     End Sub
