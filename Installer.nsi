@@ -58,7 +58,9 @@ Section "Match reminder (required)"
   ; Set output path to the installation directory.
   SetOutPath $INSTDIR\plugins
   SetOverwrite "on"
-  
+
+  MessageBox MB_OK|MB_ICONEXCLAMATION "If ESL Wire is running, please close it first." /SD IDOK
+
   ; Put file there
   File "COPYING.txt"
   File "Readme.txt"

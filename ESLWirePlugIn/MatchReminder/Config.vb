@@ -60,20 +60,22 @@ Namespace ESLWirePlugIn.MatchReminder
     Public Sub New()
       Me.Notifications = New List(Of NotificationSetting)
 
-      Call Me.Reset()
+      Call Me.iReset()
     End Sub
 
     Public Sub Reset()
-      Call Me.Notifications.Clear()
+      Call Me.iReset()
 
       With Me.Notifications
-        Call .Clear()
-
         Call .Add(New NotificationSetting(0, NotificationSetting.DefaultMessageFormat, True, True, True, 30))
         Call .Add(New NotificationSetting(60, NotificationSetting.DefaultMessageFormat, True, True, False, 30))
         Call .Add(New NotificationSetting(300, NotificationSetting.DefaultMessageFormat, True, True, True, 30))
         Call .Add(New NotificationSetting(600, NotificationSetting.DefaultMessageFormat, True, True, False, 30))
       End With
+    End Sub
+
+    Private Sub iReset()
+      Call Me.Notifications.Clear()
 
       Me.EnableNotifications = True
       Me.EnableVoiceAnnouncement = True

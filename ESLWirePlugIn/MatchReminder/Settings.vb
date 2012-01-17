@@ -233,6 +233,7 @@ Namespace ESLWirePlugIn.MatchReminder
 
     Private Sub cmdApply_Click(sender As System.Object, e As System.EventArgs) Handles cmdApply.Click
       Dim Config As New Config
+
       With Config
         .Notifications = Me.List
 

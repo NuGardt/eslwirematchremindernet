@@ -101,7 +101,10 @@ Namespace ESLWirePlugIn.MatchReminder
       Ex = Nothing
 
       Try
-        If Not Config.Read(ConfigPath, Me.Settings, Ex) Then Me.Settings = New Config()
+        If Not Config.Read(ConfigPath, Me.Settings, Ex) Then
+          Me.Settings = New Config()
+          Call Me.Settings.Reset()
+        End If
 
         AddHandler Me.GI.MatchListUpdated, OnMatchListUpdate
         AddHandler Me.GI.MatchStarted, OnMatchStarted
