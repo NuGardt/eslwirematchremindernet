@@ -92,11 +92,13 @@ Namespace ESLWirePlugIn.MatchReminder
                    ByVal MessageFormat As String,
                    ByVal NotifyInGame As Boolean,
                    ByVal ShowBaloon As Boolean,
+                   ByVal VoiceAnnounce As Boolean,
                    ByVal NotificationDuration As Int32)
       Me.NotifyTimeBeforeMatch = TimeBeforeMatch
       Me.MessageFormat = MessageFormat
       Me.ShowInGameNotification = NotifyInGame
       Me.ShowBaloonNotification = ShowBaloon
+      Me.VoiceAnnounce = VoiceAnnounce
       Me.NotificationDuration = NotificationDuration
     End Sub
 

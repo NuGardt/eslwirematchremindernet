@@ -101,10 +101,7 @@ Namespace ESLWirePlugIn.MatchReminder
       Ex = Nothing
 
       Try
-        If Not Config.Read(ConfigPath, Me.Settings, Ex) Then
-          Me.Settings = New Config()
-          Call Me.Settings.Notifications.Add(New NotificationSetting())
-        End If
+        If Not Config.Read(ConfigPath, Me.Settings, Ex) Then Me.Settings = New Config()
 
         AddHandler Me.GI.MatchListUpdated, OnMatchListUpdate
         AddHandler Me.GI.MatchStarted, OnMatchStarted
@@ -159,8 +156,6 @@ Namespace ESLWirePlugIn.MatchReminder
     Private Sub Work()
       Dim tSleep As Integer = 0
       Dim JustNow As DateTime
-      'Dim tNextMatch As DateTime
-      'Dim ListExpiredReminders As New List(Of ReminderItem)
       Dim NextMatchMessage As String = Nothing
       Dim Reminder As ReminderItem
 
@@ -169,7 +164,6 @@ Namespace ESLWirePlugIn.MatchReminder
       Try
         Do While Me.TestNotDisposed() AndAlso Me.Settings.EnableNotifications
           JustNow = Now
-          'tNextMatch = JustNow
 
           If Not Me.DisableNotificationsTill.HasValue Then
             SyncLock Me.LockObject
@@ -191,28 +185,7 @@ Namespace ESLWirePlugIn.MatchReminder
                 Call Me.SetTrayNotificationText(NextMatchMessage)
               End If
               NextMatchMessage = Nothing
-
-              '  If ListExpiredReminders.Count > 0 Then
-              '    With ListExpiredReminders.GetEnumerator()
-              '      Do While .MoveNext()
-              '        Call Me.ListReminders.Remove(.Current)
-              '      Loop
-              '      Call .Dispose()
-              '    End With
-              '  End If
             End SyncLock
-
-            'If ListExpiredReminders.Count > 0 Then
-            '  With ListExpiredReminders.GetEnumerator()
-            '    Do While .MoveNext()
-            '      Call Me.ShowNotification(JustNow, .Current)
-            '    Loop
-
-            '    Call .Dispose()
-            '  End With
-
-            '  Call ListExpiredReminders.Clear()
-            'End If
           ElseIf Me.DisableNotificationsTill.Value < JustNow Then
             Me.DisableNotificationsTill = Nothing
             Call Me.MatchListUpdate()
@@ -221,7 +194,8 @@ Namespace ESLWirePlugIn.MatchReminder
             Call Me.SayEvent("Notifications resumed.")
           End If
 
-          Do Until tSleep >= 1000
+          'Wait for 500 miliseconds but quickly notice if the plugin is disposing.
+          Do Until tSleep >= 500
             Call Thread.Sleep(100)
             tSleep += 100
 
@@ -338,6 +312,8 @@ Namespace ESLWirePlugIn.MatchReminder
           Erg += String.Format("{0} seconds", tSecond)
         End If
       End If
+
+      If String.IsNullOrEmpty(Erg) Then Erg = "now"
 
       Return Erg.Trim
     End Function
@@ -479,6 +455,7 @@ Namespace ESLWirePlugIn.MatchReminder
           Call .SelectVoice(Config.TtsVoice)
         Catch
           Call .SelectVoice(.GetInstalledVoices.Item(0).VoiceInfo.Name)
+          Config.TtsVoice = .Voice.Name
         End Try
       End With
 

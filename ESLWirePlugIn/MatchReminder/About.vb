@@ -24,7 +24,7 @@ Namespace ESLWirePlugIn.MatchReminder
     Private ReadOnly Plugin As Plugin
 
     Public Sub New(ByVal Plugin As Plugin)
-      Call MyBase.new()
+      Call MyBase.New()
 
       ' Dieser Aufruf ist für den Designer erforderlich.
       Call Me.InitializeComponent()
@@ -50,7 +50,7 @@ Namespace ESLWirePlugIn.MatchReminder
       Call Me.Plugin.AboutFormClose()
     End Sub
 
-    Private Sub LinkLabel1_LinkClicked(Sender As Object,
+    Private Sub lblLicense_LinkClicked(Sender As Object,
                                        e As LinkLabelLinkClickedEventArgs) Handles lblLicense.LinkClicked
       Call Process.Start(Me.lblLicense.Text)
     End Sub

@@ -59,6 +59,22 @@ Namespace ESLWirePlugIn.MatchReminder
 
     Public Sub New()
       Me.Notifications = New List(Of NotificationSetting)
+
+      Call Me.Reset()
+    End Sub
+
+    Public Sub Reset()
+      Call Me.Notifications.Clear()
+
+      With Me.Notifications
+        Call .Clear()
+
+        Call .Add(New NotificationSetting(0, NotificationSetting.DefaultMessageFormat, True, True, True, 30))
+        Call .Add(New NotificationSetting(60, NotificationSetting.DefaultMessageFormat, True, True, False, 30))
+        Call .Add(New NotificationSetting(300, NotificationSetting.DefaultMessageFormat, True, True, True, 30))
+        Call .Add(New NotificationSetting(600, NotificationSetting.DefaultMessageFormat, True, True, False, 30))
+      End With
+
       Me.EnableNotifications = True
       Me.EnableVoiceAnnouncement = True
       Me.EnableBalloonNotification = True
@@ -80,7 +96,7 @@ Namespace ESLWirePlugIn.MatchReminder
     Public Sub CopyTo(ByVal Config As Config)
       With Config
         Call .Notifications.Clear()
-        .Notifications.AddRange(Me.Notifications)
+        Call .Notifications.AddRange(Me.Notifications)
 
         .EnableNotifications = Me.EnableNotifications
         .EnableVoiceAnnouncement = Me.EnableVoiceAnnouncement
