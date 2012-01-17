@@ -20,11 +20,12 @@ SetDateSave on
 SetDatablockOptimize on
 CRCCheck on
 Icon "Resources\ICO_MatchReminder.ico"
-
 LicenseData "COPYING.txt"
+!define /date DATE "%Y.%m.%d"
+
 
 ; The file to write
-OutFile "ESLWireMatchReminder.exe"
+OutFile "ESLWirePluginMatchReminder-${Date}.exe"
 
 ; The default installation directory
 InstallDir $PROGRAMFILES64\EslWire
@@ -56,7 +57,7 @@ Section "Match reminder (required)"
   
   ; Set output path to the installation directory.
   SetOutPath $INSTDIR\plugins
-  SetOverwrite "try"
+  SetOverwrite "on"
   
   ; Put file there
   File "COPYING.txt"
@@ -88,8 +89,8 @@ Section "Uninstall"
   DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\ESLWirePluginMatchReminder"
 
   ; Remove files and uninstaller
-  Delete $INSTDIR\COPYING.txt
-  Delete $INSTDIR\Readme.txt
-  Delete $INSTDIR\com.NuGardt.ESLWirePlugin.MatchReminder.dll
-  Delete $INSTDIR\uninstall_ESLWirePluginMatchReminder.exe
+  Delete "$INSTDIR\COPYING.txt"
+  Delete "$INSTDIR\Readme.txt"
+  Delete "$INSTDIR\com.NuGardt.ESLWirePlugin.MatchReminder.dll"
+  Delete "$INSTDIR\uninstall_ESLWirePluginMatchReminder.exe"
 SectionEnd

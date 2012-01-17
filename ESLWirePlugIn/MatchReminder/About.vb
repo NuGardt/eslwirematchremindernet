@@ -1,21 +1,19 @@
-﻿'
+﻿' NuGardt ESL Wire Plugin Match Reminder
 ' Copyright (C) 2012 NuGardt Software
 ' http://www.nugardt.com
 '
-' This Program is free software; you can redistribute it and/or modify
+' This program is free software: you can redistribute it and/or modify
 ' it under the terms of the GNU General Public License as published by
-' the Free Software Foundation; either version 2, or (at your option)
-' any later version.
+' the Free Software Foundation, either version 3 of the License, or
+' (at your option) any later version.
 '
-' This Program is distributed in the hope that it will be useful,
+' This program is distributed in the hope that it will be useful,
 ' but WITHOUT ANY WARRANTY; without even the implied warranty of
-' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 ' GNU General Public License for more details.
 '
 ' You should have received a copy of the GNU General Public License
-' along with NuGardt ESL Wire Plugin Match Reminder; see the file COPYING. If not, write to
-' the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
-' http://www.gnu.org/copyleft/gpl.html
+' along with this program.  If not, see <http://www.gnu.org/licenses/>.
 '
 Imports System.Windows.Forms
 
@@ -50,6 +48,10 @@ Namespace ESLWirePlugIn.MatchReminder
     Private Sub About_FormClosing(Sender As Object,
                                   e As FormClosingEventArgs) Handles Me.FormClosing
       Call Me.Plugin.AboutFormClose()
+    End Sub
+
+    Private Sub LinkLabel1_LinkClicked(Sender As System.Object, e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles lblLicense.LinkClicked
+      Call Process.Start(Me.lblLicense.Text)
     End Sub
   End Class
 End Namespace

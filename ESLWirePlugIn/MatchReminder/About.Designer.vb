@@ -1,21 +1,19 @@
-﻿'
+﻿' NuGardt ESL Wire Plugin Match Reminder
 ' Copyright (C) 2012 NuGardt Software
 ' http://www.nugardt.com
 '
-' This Program is free software; you can redistribute it and/or modify
+' This program is free software: you can redistribute it and/or modify
 ' it under the terms of the GNU General Public License as published by
-' the Free Software Foundation; either version 2, or (at your option)
-' any later version.
+' the Free Software Foundation, either version 3 of the License, or
+' (at your option) any later version.
 '
-' This Program is distributed in the hope that it will be useful,
+' This program is distributed in the hope that it will be useful,
 ' but WITHOUT ANY WARRANTY; without even the implied warranty of
-' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 ' GNU General Public License for more details.
 '
 ' You should have received a copy of the GNU General Public License
-' along with NuGardt ESL Wire Plugin Match Reminder; see the file COPYING. If not, write to
-' the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
-' http://www.gnu.org/copyleft/gpl.html
+' along with this program.  If not, see <http://www.gnu.org/licenses/>.
 '
 
 Namespace ESLWirePlugIn.MatchReminder
@@ -51,6 +49,8 @@ Namespace ESLWirePlugIn.MatchReminder
       Me.Label4 = New System.Windows.Forms.Label()
       Me.lblLinkInfo = New System.Windows.Forms.Label()
       Me.lblLink = New System.Windows.Forms.LinkLabel()
+      Me.lblLicense = New System.Windows.Forms.LinkLabel()
+      Me.lblLicenseInfo = New System.Windows.Forms.Label()
       Me.panBout.SuspendLayout()
       Me.SuspendLayout()
       '
@@ -69,6 +69,8 @@ Namespace ESLWirePlugIn.MatchReminder
       Me.panBout.Controls.Add(Me.Label4, 1, 3)
       Me.panBout.Controls.Add(Me.lblLinkInfo, 0, 4)
       Me.panBout.Controls.Add(Me.lblLink, 1, 4)
+      Me.panBout.Controls.Add(Me.lblLicense, 1, 5)
+      Me.panBout.Controls.Add(Me.lblLicenseInfo, 0, 5)
       Me.panBout.Dock = System.Windows.Forms.DockStyle.Fill
       Me.panBout.Location = New System.Drawing.Point(0, 0)
       Me.panBout.Name = "panBout"
@@ -176,6 +178,30 @@ Namespace ESLWirePlugIn.MatchReminder
       Me.lblLink.Text = "http://code.google.com/p/eslwirematchremindernet/"
       Me.lblLink.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
       '
+      'lblLicense
+      '
+      Me.lblLicense.AutoSize = True
+      Me.panBout.SetColumnSpan(Me.lblLicense, 2)
+      Me.lblLicense.Dock = System.Windows.Forms.DockStyle.Fill
+      Me.lblLicense.Location = New System.Drawing.Point(109, 154)
+      Me.lblLicense.Name = "lblLicense"
+      Me.lblLicense.Size = New System.Drawing.Size(206, 26)
+      Me.lblLicense.TabIndex = 12
+      Me.lblLicense.TabStop = True
+      Me.lblLicense.Text = "http://www.gnu.org/licenses/gpl.html"
+      Me.lblLicense.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+      '
+      'lblLicenseInfo
+      '
+      Me.lblLicenseInfo.AutoSize = True
+      Me.lblLicenseInfo.Dock = System.Windows.Forms.DockStyle.Fill
+      Me.lblLicenseInfo.Location = New System.Drawing.Point(3, 154)
+      Me.lblLicenseInfo.Name = "lblLicenseInfo"
+      Me.lblLicenseInfo.Size = New System.Drawing.Size(100, 26)
+      Me.lblLicenseInfo.TabIndex = 13
+      Me.lblLicenseInfo.Text = "License"
+      Me.lblLicenseInfo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+      '
       'About
       '
       Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -198,5 +224,7 @@ Namespace ESLWirePlugIn.MatchReminder
     Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents lblLinkInfo As System.Windows.Forms.Label
     Friend WithEvents lblLink As System.Windows.Forms.LinkLabel
+    Friend WithEvents lblLicense As System.Windows.Forms.LinkLabel
+    Friend WithEvents lblLicenseInfo As System.Windows.Forms.Label
   End Class
 End Namespace
