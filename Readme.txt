@@ -12,12 +12,23 @@
 
  Want more stuff in this plugin? Message me with your suggestions or do it yourself! This plugin is open source. Written in Visual Basic.NET. Source codes available on http://code.google.com/p/eslwirematchremindernet/ (GNU GPL v3 License).
 
+
+==Requirements==
+ * ESL Wire (http://www.esl.eu/eu/wire)
+ * Microsoft .NET Framework 3.5 (http://www.microsoft.com/download/en/details.aspx?id=21)
+
+
 ==Installation==
- When using the installer, point it to the directory of your ESL Wire installation.
+ Using the installer, point it to the directory of your ESL Wire installation.
+
  Using the archive, put its contents into the \plugins folder of your ESL Wire Installation.
+
  ESL Wire is installed by default to: "C:\Program Files\EslWire" (This may be different to you)
 
+
 ==Notification message format place holders==
+In the notification text you can insert place holders that will be filled by the plugin with data automatically.
+
  * $gameid$
  * The ESL game identifier
  * Example: "687" (for StarCraft II)
@@ -58,6 +69,12 @@
  * $timetomatch$
  * The time remaining till the match starts
  * Example: "1 day 14 hours 37 minutes 2 seconds"
+
+
+==Open source==
+ Download the source at http://code.google.com/p/eslwirematchremindernet/ or vis Subversion (SVN): svn checkout http://eslwirematchremindernet.googlecode.com/svn/ eslwirematchremindernet-read-only
+
+ Written with Microsoft Visual Studio 2010 in .NET Framework 3.5. Installer done with Nullsoft NSIS 2.46 (http://nsis.sourceforge.net/Main_Page). Archived using Rarlab Winrar (http://www.rarlab.com/).
 
 
 ==Support==
