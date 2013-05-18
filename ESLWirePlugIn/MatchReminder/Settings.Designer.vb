@@ -39,7 +39,6 @@ Namespace ESLWirePlugIn.MatchReminder
     'Das Bearbeiten mit dem Code-Editor ist nicht möglich.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-      Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Settings))
       Me.grdView = New System.Windows.Forms.DataGridView()
       Me.colDelete = New System.Windows.Forms.DataGridViewButtonColumn()
       Me.colNotficationPrior = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -486,7 +485,7 @@ Namespace ESLWirePlugIn.MatchReminder
       Me.rtfLegend.ReadOnly = True
       Me.rtfLegend.Size = New System.Drawing.Size(265, 133)
       Me.rtfLegend.TabIndex = 5
-      Me.rtfLegend.Text = resources.GetString("rtfLegend.Text")
+      Me.rtfLegend.Text = ""
       '
       'Settings
       '

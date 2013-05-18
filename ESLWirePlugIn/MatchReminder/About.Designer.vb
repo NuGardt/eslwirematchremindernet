@@ -128,7 +128,7 @@ Namespace ESLWirePlugIn.MatchReminder
       Me.Label2.Name = "Label2"
       Me.Label2.Size = New System.Drawing.Size(206, 26)
       Me.Label2.TabIndex = 4
-      Me.Label2.Text = "2012 NuGardt Software"
+      Me.Label2.Text = "2012-2013 NuGardt Software"
       Me.Label2.TextAlign = System.Drawing.ContentAlignment.TopCenter
       '
       'Label3

@@ -85,7 +85,7 @@ In the notification text you can insert place holders that will be filled by the
  * Question: Under settings some of my rows are coloured red and orange. What does that mean?
  * Answer: An orange coloured row means that the row before overlaps in notification duration. Red row means that one or more notification of the same type occurs at the same time.
 
- * Question: The balloon popup does not show for the length of the duration I have set in the plugin. Am I doing something wrong=
+ * Question: The balloon popup does not show for the length of the duration I have set in the plugin. Am I doing something wrong?
  * Answer: The duration of the balloon popup is controlled by the operating system. There is nothing I can do about that. Try settings notification right after each other for a prolonged notification exposure.
 
  * Question: I want to add more functionality to the plugin. Can I do it myself?
@@ -99,10 +99,11 @@ In the notification text you can insert place holders that will be filled by the
 
 
 ==Support==
- Home Page: http://www.nugardt.com
- Code: http://code.google.com/p/eslwirematchremindernet/
- E-mail: kevin@nugardt.com
- Twitter: http://www.twitter.com/oomjan34
+ * Home Page: http://www.nugardt.com/open-source/esl-wire-match-reminder/
+ * Code: http://code.google.com/p/eslwirematchremindernet/
+ * E-mail: kevin@nugardt.com
+ * Twitter: http://www.twitter.com/oomjan34
+ * ESL Wire: http://www.esl.eu/eu/wire
 
 
 ==License==
