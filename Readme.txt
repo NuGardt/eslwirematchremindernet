@@ -1,6 +1,6 @@
-=NuGardt ESL Wire Plugin Match Reminder v1.0.0.0=
+=NuGardt ESL Wire Plugin Match Reminder v1.2013.5.19=
  Author: Kevin 'OomJan' Gardthausen
- Last Update: 2012-01-18
+ Last Update: 2013-05-19
 
  The match reminder is a plugin for ESL Wire (http://www.esl.eu/wire).
 
@@ -95,7 +95,7 @@ In the notification text you can insert place holders that will be filled by the
 ==Open source==
  Download the source at http://code.google.com/p/eslwirematchremindernet/ or via Subversion (SVN): svn checkout http://eslwirematchremindernet.googlecode.com/svn/ eslwirematchremindernet-read-only
 
- Written with Microsoft Visual Studio 2010 in .NET Framework 3.5. Installer done with Nullsoft NSIS 2.46 (http://nsis.sourceforge.net/Main_Page). Archived using Rarlab Winrar (http://www.rarlab.com/).
+ Written with Microsoft Visual Studio 2010 in .NET Framework 3.5.
 
 
 ==Support==
@@ -107,7 +107,7 @@ In the notification text you can insert place holders that will be filled by the
 
 ==License==
  NuGardt ESL Wire Plugin Match Reminder
- Copyright (C) 2012 NuGardt Software
+ Copyright (C) 2012-2013 NuGardt Software
  http://www.nugardt.com
 
  This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.

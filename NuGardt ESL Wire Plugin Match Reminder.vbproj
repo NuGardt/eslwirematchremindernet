@@ -10,7 +10,7 @@
     <ProjectGuid>{AEB8998C-7F40-483F-8639-F95CBE097602}</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>NuGardt</RootNamespace>
-    <AssemblyName>com.NuGardt.ESLWirePlugin.MatchReminder</AssemblyName>
+    <AssemblyName>NuGardt.ESLWirePlugin.MatchReminder</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>Windows</MyType>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
@@ -22,7 +22,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>com.NuGardt.ESLWirePlugin.MatchReminder.xml</DocumentationFile>
+    <DocumentationFile>NuGardt.ESLWirePlugin.MatchReminder.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
     <Optimize>true</Optimize>
     <DefineConstants>
@@ -35,7 +35,7 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>com.NuGardt.ESLWirePlugin.MatchReminder.xml</DocumentationFile>
+    <DocumentationFile>NuGardt.ESLWirePlugin.MatchReminder.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
@@ -54,11 +54,12 @@
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>NuGadt ESL Wire Plugin Match Reminder.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="PluginInterface">
-      <HintPath>..\..\..\..\..\..\Program Files\EslWire\pluginContainer\PluginInterface.dll</HintPath>
+      <HintPath>Lib\PluginInterface.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
@@ -113,12 +114,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ESLWirePlugIn\MatchReminder\About.resx">
-      <DependentUpon>About.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ESLWirePlugIn\MatchReminder\Settings.resx">
-      <DependentUpon>Settings.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
@@ -138,7 +133,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="NuGadt ESL Wire Plugin Match Reminder.snk" />
     <None Include="Resources\ICO_MatchReminder.ico" />
   </ItemGroup>
   <ItemGroup>

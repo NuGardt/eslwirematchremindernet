@@ -1,5 +1,5 @@
 ﻿' NuGardt ESL Wire Plugin Match Reminder
-' Copyright (C) 2012 NuGardt Software
+' Copyright (C) 2012-2013 NuGardt Software
 ' http://www.nugardt.com
 '
 ' This program is free software: you can redistribute it and/or modify

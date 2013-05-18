@@ -12,7 +12,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyDescription("Match Reminder")> 
 <Assembly: AssemblyCompany("NuGardt Software")> 
 <Assembly: AssemblyProduct("NuGardt ESL Wire Plugin")> 
-<Assembly: AssemblyCopyright("Copyright © NuGardt 2012")> 
+<Assembly: AssemblyCopyright("Copyright © NuGardt 2012-2013")> 
 <Assembly: AssemblyTrademark("")> 
 
 <Assembly: ComVisible(False)>
@@ -31,5 +31,5 @@ Imports System.Runtime.InteropServices
 ' übernehmen, indem Sie "*" eingeben:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("1.0.0.0")> 
-<Assembly: AssemblyFileVersion("1.0.0.0")> 
+<Assembly: AssemblyVersion("1.2013.05.19")> 
+<Assembly: AssemblyFileVersion("1.2013.05.19")> 

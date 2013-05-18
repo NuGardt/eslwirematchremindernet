@@ -1,5 +1,5 @@
 ﻿' NuGardt ESL Wire Plugin Match Reminder
-' Copyright (C) 2012 NuGardt Software
+' Copyright (C) 2012-2013 NuGardt Software
 ' http://www.nugardt.com
 '
 ' This program is free software: you can redistribute it and/or modify
@@ -22,9 +22,9 @@ Namespace ESLWirePlugIn.MatchReminder
     Private Scheduler As Scheduler
     Private SettingsForm As Settings
     Private AboutForm As About
-
+    
     ''' <summary>
-    ''' Start point.
+    '''   Start point.
     ''' </summary>
     ''' <remarks></remarks>
     Public Overrides Sub Init()
@@ -37,9 +37,9 @@ Namespace ESLWirePlugIn.MatchReminder
       Me.Scheduler = New Scheduler(Me)
       Call Me.Scheduler.Start()
     End Sub
-
+    
     ''' <summary>
-    ''' End point.
+    '''   End point.
     ''' </summary>
     ''' <remarks></remarks>
     Public Overrides Sub OnExit()
