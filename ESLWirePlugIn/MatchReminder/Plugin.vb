@@ -22,9 +22,9 @@ Namespace ESLWirePlugIn.MatchReminder
     Private Scheduler As Scheduler
     Private SettingsForm As Settings
     Private AboutForm As About
-    
+
     ''' <summary>
-    '''   Start point.
+    ''' Start point.
     ''' </summary>
     ''' <remarks></remarks>
     Public Overrides Sub Init()
@@ -37,9 +37,9 @@ Namespace ESLWirePlugIn.MatchReminder
       Me.Scheduler = New Scheduler(Me)
       Call Me.Scheduler.Start()
     End Sub
-    
+
     ''' <summary>
-    '''   End point.
+    ''' End point.
     ''' </summary>
     ''' <remarks></remarks>
     Public Overrides Sub OnExit()
