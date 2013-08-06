@@ -47,17 +47,13 @@ Namespace ESLWirePlugIn.MatchReminder
       Me.Speech = New SpeechSynthesizer()
     End Sub
 
-    Private Shadows Sub Close()
-      '-
-    End Sub
-
     Public Shadows Sub Close(ByVal IsClosing As Boolean)
       Me.IsClosing = IsClosing
       Call MyBase.Close()
     End Sub
 
-    Private Sub Settings_FormClosing(sender As Object,
-                                     e As FormClosingEventArgs) Handles Me.FormClosing
+    Private Sub SettingsFormClosing(Sender As Object,
+                                    e As FormClosingEventArgs) Handles Me.FormClosing
       If IsClosing OrElse (MsgBox("Are you sure you want to discard all settings?", vbQuestion Or vbYesNoCancel) = vbYes) Then
         Call Me.Speech.Dispose()
         Call Me.Plugin.SettingsFormClose()
@@ -67,8 +63,8 @@ Namespace ESLWirePlugIn.MatchReminder
       End If
     End Sub
 
-    Private Sub Settings_Load(sender As Object,
-                              e As EventArgs) Handles Me.Load
+    Private Sub SettingsLoad(Sender As Object,
+                             e As EventArgs) Handles Me.Load
       With Me.Speech.GetInstalledVoices().GetEnumerator()
         Call .Reset()
 
@@ -80,8 +76,8 @@ Namespace ESLWirePlugIn.MatchReminder
       End With
     End Sub
 
-    Private Sub Settings_Shown(sender As Object,
-                               e As EventArgs) Handles Me.Shown
+    Private Sub SettingsShown(Sender As Object,
+                              e As EventArgs) Handles Me.Shown
       Me.rtfLegend.Rtf = Me.rtfLegend.Text
       Call Me.List.AddRange(Me.Scheduler.ListNotificationSettings)
       With Me.Scheduler.Settings
@@ -105,8 +101,8 @@ Namespace ESLWirePlugIn.MatchReminder
       Me.grdView.RowCount = Me.List.Count
     End Sub
 
-    Private Sub grdView_CellContentClick(sender As Object,
-                                         e As DataGridViewCellEventArgs) Handles grdView.CellContentClick
+    Private Sub ViewCellContentClick(Sender As Object,
+                                     e As DataGridViewCellEventArgs) Handles grdView.CellContentClick
       Select Case e.RowIndex
         Case 0 To Me.List.Count - 1
           Dim Item As NotificationSetting = Me.List.Item(e.RowIndex)
@@ -152,8 +148,8 @@ Namespace ESLWirePlugIn.MatchReminder
       End Select
     End Sub
 
-    Private Sub grdView_CellValueNeeded(sender As Object,
-                                        e As DataGridViewCellValueEventArgs) Handles grdView.CellValueNeeded
+    Private Sub ViewCellValueNeeded(Sender As Object,
+                                    e As DataGridViewCellValueEventArgs) Handles grdView.CellValueNeeded
       Select Case e.RowIndex
         Case 0 To Me.List.Count - 1
           Dim Item As NotificationSetting = Me.List.Item(e.RowIndex)
@@ -197,8 +193,8 @@ Namespace ESLWirePlugIn.MatchReminder
       End Select
     End Sub
 
-    Private Sub grdView_CellValuePushed(sender As Object,
-                                        e As DataGridViewCellValueEventArgs) Handles grdView.CellValuePushed
+    Private Sub ViewCellValuePushed(Sender As Object,
+                                    e As DataGridViewCellValueEventArgs) Handles grdView.CellValuePushed
       Select Case e.RowIndex
         Case 0 To Me.List.Count - 1
           Dim Item As NotificationSetting = Me.List.Item(e.RowIndex)
@@ -228,8 +224,8 @@ Namespace ESLWirePlugIn.MatchReminder
       End Select
     End Sub
 
-    Private Sub cmdNewRow_Click(sender As Object,
-                                e As EventArgs) Handles cmdNewRow.Click
+    Private Sub NewRowClick(Sender As Object,
+                            e As EventArgs) Handles cmdNewRow.Click
       Dim Item = New NotificationSetting
 
       If Me.List.Count <> 0 Then
@@ -241,8 +237,8 @@ Namespace ESLWirePlugIn.MatchReminder
       Me.grdView.RowCount = Me.List.Count
     End Sub
 
-    Private Sub cmdApply_Click(sender As Object,
-                               e As EventArgs) Handles cmdApply.Click
+    Private Sub ApplyClick(Sender As Object,
+                           e As EventArgs) Handles cmdApply.Click
       Dim Config As New Config
 
       With Config
@@ -262,18 +258,18 @@ Namespace ESLWirePlugIn.MatchReminder
       Call Me.Close(True)
     End Sub
 
-    Private Sub barRate_Scroll(sender As Object,
-                               e As EventArgs) Handles barRate.Scroll
+    Private Sub BarRateScroll(Sender As Object,
+                              e As EventArgs) Handles barRate.Scroll
       Me.Speech.Rate = Me.barRate.Value
     End Sub
 
-    Private Sub barVolume_Scroll(sender As Object,
-                                 e As EventArgs) Handles barVolume.Scroll
+    Private Sub BarVolumeScroll(Sender As Object,
+                                e As EventArgs) Handles barVolume.Scroll
       Me.Speech.Volume = Me.barVolume.Value
     End Sub
 
-    Private Sub cmdDiscard_Click(sender As Object,
-                                 e As EventArgs) Handles cmdDiscard.Click
+    Private Sub DiscardClick(Sender As Object,
+                             e As EventArgs) Handles cmdDiscard.Click
       Call Me.Scheduler.SayEvent("Settings discarded.")
       Call Me.Close(True)
     End Sub

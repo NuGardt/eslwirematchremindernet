@@ -38,28 +38,28 @@ Namespace ESLWirePlugIn.MatchReminder
       Me.Scheduler = Scheduler
     End Sub
 
-    Private Sub About_Shown(Sender As Object,
-                            e As EventArgs) Handles Me.Shown
+    Private Sub AboutShown(Sender As Object,
+                           e As EventArgs) Handles Me.Shown
       Call Me.Scheduler.SayEvent("Welcome to the E S L Wire plug in Match Reminder.")
     End Sub
 
-    Private Sub About_FormClosing(Sender As Object,
-                                  e As FormClosingEventArgs) Handles Me.FormClosing
+    Private Sub AboutFormClosing(Sender As Object,
+                                 e As FormClosingEventArgs) Handles Me.FormClosing
       Call Me.Plugin.AboutFormClose()
     End Sub
 
-    Private Sub cmdOk_Click(Sender As Object,
-                            e As EventArgs) Handles cmdOk.Click
+    Private Sub OkClick(Sender As Object,
+                        e As EventArgs) Handles cmdOk.Click
       Call Me.Close()
     End Sub
 
-    Private Sub lblLink_LinkClicked(Sender As Object,
-                                    e As LinkLabelLinkClickedEventArgs) Handles lblLink.LinkClicked
+    Private Sub LinkLinkClicked(Sender As Object,
+                                e As LinkLabelLinkClickedEventArgs) Handles lblLink.LinkClicked
       Call Process.Start(Me.lblLink.Text)
     End Sub
 
-    Private Sub lblLicense_LinkClicked(Sender As Object,
-                                       e As LinkLabelLinkClickedEventArgs) Handles lblLicense.LinkClicked
+    Private Sub LicenseLinkClicked(Sender As Object,
+                                   e As LinkLabelLinkClickedEventArgs) Handles lblLicense.LinkClicked
       Call Process.Start(Me.lblLicense.Text)
     End Sub
   End Class

@@ -473,18 +473,18 @@ Namespace ESLWirePlugIn.MatchReminder
       End Get
     End Property
 
-    Private Sub mnuSettings_Click(Sender As Object,
-                                  e As EventArgs) Handles MenuSettings.Click
+    Private Sub SettingsClick(Sender As Object,
+                              e As EventArgs) Handles MenuSettings.Click
       Call Me.Plugin.OpenSettings()
     End Sub
 
-    Private Sub mnuAbout_Click(Sender As Object,
-                               e As EventArgs) Handles MenuAbout.Click
+    Private Sub AboutClick(Sender As Object,
+                           e As EventArgs) Handles MenuAbout.Click
       Call Me.Plugin.OpenAbout()
     End Sub
 
-    Private Sub mnuDisableNotification5Minutes_Click(Sender As Object,
-                                                     e As EventArgs) Handles MenuDeactivateNotification5Minutes.Click
+    Private Sub DisableNotification5MinutesClick(Sender As Object,
+                                                 e As EventArgs) Handles MenuDeactivateNotification5Minutes.Click
       Me.DisableNotificationsTill = Now.AddMinutes(5)
       Me.MenuDeactivateNotificationReactivate.Enabled = True
       Call Trace.WriteLine("Notifications will recomence at " + Me.DisableNotificationsTill.Value.ToString())
@@ -492,8 +492,8 @@ Namespace ESLWirePlugIn.MatchReminder
       Call Me.SayEvent("Notifications deactivated for 5 minutes.")
     End Sub
 
-    Private Sub mnuDisableNotification10Minutes_Click(Sender As Object,
-                                                      e As EventArgs) Handles MenuDeactivateNotification10Minutes.Click
+    Private Sub DisableNotification10MinutesClick(Sender As Object,
+                                                  e As EventArgs) Handles MenuDeactivateNotification10Minutes.Click
       Me.DisableNotificationsTill = Now.AddMinutes(10)
       Me.MenuDeactivateNotificationReactivate.Enabled = True
       Call Trace.WriteLine("Notifications will recomence at " + Me.DisableNotificationsTill.Value.ToString())
@@ -501,8 +501,8 @@ Namespace ESLWirePlugIn.MatchReminder
       Call Me.SayEvent("Notifications deactivated for 10 minutes.")
     End Sub
 
-    Private Sub mnuDisableNotification30Minutes_Click(Sender As Object,
-                                                      e As EventArgs) Handles MenuDeactivateNotification30Minutes.Click
+    Private Sub DisableNotification30MinutesClick(Sender As Object,
+                                                  e As EventArgs) Handles MenuDeactivateNotification30Minutes.Click
       Me.DisableNotificationsTill = Now.AddMinutes(30)
       Me.MenuDeactivateNotificationReactivate.Enabled = True
       Call Trace.WriteLine("Notifications will recomence at " + Me.DisableNotificationsTill.Value.ToString())
@@ -510,8 +510,8 @@ Namespace ESLWirePlugIn.MatchReminder
       Call Me.SayEvent("Notifications deactivated for 30 minutes.")
     End Sub
 
-    Private Sub mnuDisableNotificationReenable_Click(Sender As Object,
-                                                     e As EventArgs) Handles MenuDeactivateNotificationReactivate.Click
+    Private Sub DisableNotificationReenableClick(Sender As Object,
+                                                 e As EventArgs) Handles MenuDeactivateNotificationReactivate.Click
       If Me.DisableNotificationsTill.HasValue AndAlso Me.Settings.EnableVoiceAnnouncement Then
         Me.MenuDeactivateNotificationReactivate.Enabled = False
         Call Me.SayEvent("Notifications re-activated.")
